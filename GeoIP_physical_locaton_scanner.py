@@ -1,4 +1,17 @@
+import os
 import pygeoip
+
+# Function to check if the GeoLiteCity database is available
+def check_db():
+    if not os.path.exists('GeoLiteCity.dat'):
+        print("GeoLiteCity database not found.")
+        print("Please download it from: https://dev.maxmind.com/geoip/geolite2-free-geolocation-data?lang=en")
+        return False
+    return True
+
+# Check if database is available
+if not check_db():
+    exit()
 
 # Initialize GeoIP object with the GeoLite database
 gi = pygeoip.GeoIP('GeoLiteCity.dat')
